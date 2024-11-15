@@ -1,16 +1,11 @@
 ## Go Graphql Starter
-[![GitHub license](https://img.shields.io/github/license/OscarYuen/go-graphql-starter.svg)](https://github.com/OscarYuen/go-graphql-starter/blob/master/LICENSE)
 
+In case you need to get called from another frontend side, CORS may needed to be enabled in this application as this project mainly focuses on backend logic at this stage.
 
-This project aims to use [graph-gophers/graphql-go](https://github.com/graph-gophers/graphql-go) to build a starter web application. This project has already been used as backend application in production. 
-
-In case you need to get called from another frontend side, CORS may needed to be enabled in this application as this project mainly focuses on backend logic at this stage. 
-
-
-This project would be continuously under development for enhancement. Pull request is welcome. 
-
+This project would be continuously under development for enhancement. Pull request is welcome.
 
 #### RoadMap:
+
 - [x] Integrated with sqlx
 - [x] Integrated with graphql-go
 - [x] Use go-bindata to generate Go code from .graphql file
@@ -22,6 +17,7 @@ This project would be continuously under development for enhancement. Pull reque
 - [ ] Support web-socket notification and messaging
 
 #### Structure
+
     go-graphql-starer
     │   README.md
     │   server.go           --- the entry file
@@ -45,7 +41,7 @@ This project would be continuously under development for enhancement. Pull reque
     │       └───...         --- graphql schema files in *.graphql format
     └───service             --- services for users, authorization etc.
     └───util                --- utilities
-    
+
 #### Requirement:
 
 1. Postgres database
@@ -58,59 +54,63 @@ Remark: If you want to use other databases, please feel free to change the drive
 1. Run the sql scripts under `data/1.0` folder inside Postgres database console
 
 2. Install go-bindata
-    ```
-    go get -u github.com/jteeuwen/go-bindata/...
-    ```
+
+   ```
+   go get -u github.com/jteeuwen/go-bindata/...
+   ```
 
 3. Setup GOPATH (Optional if already set)
 
-    For example: MacOS
-    ```
-    export GOPATH=/Users/${username}/go
-    export PATH=$PATH:$GOPATH/bin
-    ```
+   For example: MacOS
+
+   ```
+   export GOPATH=/Users/${username}/go
+   export PATH=$PATH:$GOPATH/bin
+   ```
 
 4. Run the following command at root directory to generate Go code from .graphql file
-    ```
-    go-bindata -ignore=\.go -pkg=schema -o=schema/bindata.go schema/...
-    ```
 
-    OR
+   ```
+   go-bindata -ignore=\.go -pkg=schema -o=schema/bindata.go schema/...
+   ```
 
-    ```
-    go generate ./schema
-    ```
-    There would be bindata.go generated under `schema` folder
+   OR
+
+   ```
+   go generate ./schema
+   ```
+
+   There would be bindata.go generated under `schema` folder
 
 5. Start the server (Ensure your postgres database is live and its setting in Config.toml is correct)
-    ```
-    go build server.go
-    ```
-    
+   ```
+   go build server.go
+   ```
+
 #### Usage(With docker):
 
 1. Run the sql scripts under `data/1.0` folder inside Postgres database console
 
 2. Build docker image
-    ```
-    docker build -t go-graphql-starter .
-    ```
+
+   ```
+   docker build -t go-graphql-starter .
+   ```
 
 3. Run docker image (Ensure your database setting in Config.toml is correct)
-    ```
-    docker run go-graphql-starter
-    ```
+   ```
+   docker run go-graphql-starter
+   ```
 
 #### Usage(With docker-compose):
 
 1. Create a folder `/psqldata` on your OS system and set it for file sharing in docker
 
 2. Create and starter services by docker-compose
-    ```
-    docker-compose up
-    ```
-    
-        
+   ```
+   docker-compose up
+   ```
+
 #### Graphql Example:
 
 Test in graphiql by the following endpoint
@@ -122,6 +122,7 @@ localhost:3000
 Basically there are two graphql queries and one mutation
 
 ##### Query:
+
 1. Get a user by email
 2. Get user list by cursor pagination
 
@@ -135,7 +136,7 @@ In order to authenticate, here are the steps to follow:
 
 ```graphql
 mutation {
-  createUser (email: "tester@tester.com", password: "123456") {
+  createUser(email: "tester@tester.com", password: "123456") {
     id
   }
 }
@@ -160,12 +161,6 @@ You can change the Authorization of request header in `graphiql.html` and restar
 #### Test:
 
 - Run Unit Tests
-    ```
-    go test
-    ```
-    
-#### Reference
-
--[graph-gophers/graphql-go](https://github.com/graph-gophers/graphql-go)
-
--[tonyghita/graphql-go-example](https://github.com/tonyghita/graphql-go-example)
+  ```
+  go test
+  ```
